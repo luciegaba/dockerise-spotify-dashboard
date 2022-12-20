@@ -1,0 +1,10 @@
+pandas
+requests
+sqlalchemy
+mysql-connector-python
+PyMySQL
+bs4
+lxml
+gunicorn
+spotipy
+pylast
