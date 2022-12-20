@@ -1,0 +1,15 @@
+dash
+dash_bootstrap_components
+dash_daq
+pandas
+numpy
+scikit-learn
+plotly
+matplotlib
+seaborn
+mysql-connector-python
+sqlalchemy
+PyMySQL
+flask
+gunicorn
+cryptography
