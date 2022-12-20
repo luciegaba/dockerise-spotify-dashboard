@@ -1,0 +1,77 @@
+version: "3.4"
+
+services:
+
+  mysqldb:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD : frenchrap2022
+      MYSQL_DATABASE : mysqldb
+    volumes:
+      - mysqldb:/var/lib/mysql
+    ports:
+      - "33060:3066"
+    networks:
+      - mysql_network
+
+  admin:
+    image: adminer    
+    ports:      
+      - "8080:8080"
+    links:
+      - mysqldb
+    networks:
+      - mysql_network
+
+  spotify:
+    build:
+      context: ./collect_from_spotify_api
+      dockerfile: Dockerfile
+    container_name: collect_from_spotify_api
+    depends_on:
+      - mysqldb
+    links:
+      - mysqldb
+    networks:
+      - mysql_network
+    ports:
+      - "8002:8002"
+    env_file:
+      - .env
+    environment:
+      - SPOTIPY_CLIENT_ID=${SPOTIPY_CLIENT_ID}
+      - SPOTIPY_CLIENT_SECRET=${SPOTIPY_CLIENT_SECRET}
+      - CREDS_MYSQL_RAP_USERNAME=${CREDS_MYSQL_RAP_USERNAME}
+      - CREDS_MYSQL_RAP_PASSWORD=${CREDS_MYSQL_RAP_PASSWORD}
+      - CREDS_MYSQL_RAP_HOST=${CREDS_MYSQL_RAP_HOST}
+      - CREDS_MYSQL_RAP_DB=${CREDS_MYSQL_RAP_DB}
+      - LASTFM_API_KEY=${LASTFM_API_KEY}
+      - LASTFM_API_SECRET=${LASTFM_API_SECRET}
+
+  dash_app:
+      build: 
+        context: ./dash_app_analytics
+      container_name: dash_app_analytics
+      restart: always
+      depends_on:
+      - mysqldb
+      links:
+      - mysqldb
+      networks:
+      - mysql_network
+      ports:
+      - "8000:8000"
+      env_file:
+      - .env
+      environment:
+      - SQL_REQUEST_ARTISTS=${SQL_REQUEST_ARTISTS}
+      - SQL_REQUEST_TRACKS=${SQL_REQUEST_TRACKS}
+    
+
+volumes:
+   mysqldb:
+    name: mysqldb
+networks: 
+  mysql_network:
+    name: mysql_network
