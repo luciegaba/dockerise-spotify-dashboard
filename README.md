@@ -1,5 +1,5 @@
 
-# UFOs sighting reports worldwide
+# French Rap Data Analytics
 
 ## Table of Contents
 
@@ -93,12 +93,12 @@ bash launch.sh
 
 ### Access to our apps:
 
-* MySQL:  
-* Dash App: 
+* MySQL:  http://localhost:8080
+* Dash App: http://localhost:8000
 
 
 
 ## Contact
 
-* [Lucie Gabagnou⛑](https://github.com/luciegaba) - Lucie.Gabagnou@etu.univ-paris1.fr
-* [Yanis Rehoune](https://github.com/Yanisreh) - aYanis.Rehoune@etu.univ-paris1.fr
+* [Lucie Gabagnou👸](https://github.com/luciegaba) - Lucie.Gabagnou@etu.univ-paris1.fr
+* [Yanis Rehoune👨‍🎓](https://github.com/Yanisreh) - Yanis.Rehoune@etu.univ-paris1.fr
