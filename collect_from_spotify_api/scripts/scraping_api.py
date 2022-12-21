@@ -64,5 +64,10 @@ def get_tracks_from_album(albums_dic_id, sp):
             tracks["album"] = album
             tracks["artist"] = ", ".join([artist["name"] for artist in track["artists"]])
             tracks.update(sp.audio_features(tracks["track_id"])[0])
+            track_info = sp.track(tracks["track_id"])
+            tracks["popularity"] = track_info["popularity"]
+            tracks["release_date"] = track_info["album"]["release_date"]
+
             list_tracks_for_artist.append(tracks)
     return list_tracks_for_artist
+

@@ -5,7 +5,6 @@ from dash import html
 
 # Create Navigation Bar with logo, and several tabs
 
-
 navbar = dbc.Navbar(
     dbc.Container(
         [
@@ -19,7 +18,6 @@ navbar = dbc.Navbar(
                             id='photo-artist',
                             className='img-fluid'
                         ),
-                        dbc.Col(html.A("GitHub", href="https://github.com/luciegaba", style={"color": "white"}))
                     ],
                     align="center",
                     className="g-0",
@@ -58,6 +56,14 @@ navbar = dbc.Navbar(
                 href="/recommandation_system",
                 style={"textDecoration": "none"},
             ),
+            dbc.NavItem(
+                html.A(
+                    html.Img(src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", style={'height':'30px', 'width':'30px'}),
+                    href="https://github.com/luciegaba",
+                    style={"textDecoration": "none"}
+                ),
+                className="ml-auto"
+            )
         ]
     ),
     color="dark",

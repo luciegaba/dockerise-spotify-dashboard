@@ -41,11 +41,6 @@ app.layout = html.Div([
 
 
 
-""" 
-GITHUB_LINK = os.environ.get(
-    "GITHUB_LINK",
-    "https://github.com/luciegaba",
-) """
 
 
 
@@ -73,18 +68,18 @@ def display_artist(artist_input):
               Input('input-artist', 'value'),
               prevent_initial_call=True)
 def display_songs(artist_input):
-    spotify_songs = tracks[["track_name", "album"
+    spotify_songs = tracks[["track_name", "album","popularity"
                             ]][tracks['artist'].str.contains(artist_input)]
-    return spotify_songs.head(20).to_dict(orient='records')
+    return spotify_songs.head(10).sort_values(by="popularity",ascending=False).to_dict(orient='records')
 
 
 @app.callback(Output('artist_albums', "data"),
               Input('input-artist', 'value'),
               prevent_initial_call=True)
 def display_albums(artist_input):
-    spotify_albums = pd.DataFrame(
-        tracks["album"][tracks['artist'].str.contains(artist_input)].unique())
-    return spotify_albums.head(20).to_dict(orient='records')
+    spotify_albums = tracks[["album","release_date"]][tracks['artist'].str.contains(artist_input)]
+    new_album=spotify_albums.drop_duplicates(subset=["album"])
+    return new_album.head(10).sort_values(by="release_date",ascending=False).to_dict(orient='records')
 
 
 @app.callback(Output('popularity-artist', "value"),

@@ -93,7 +93,7 @@ artist_caracteristics_and_top = dbc.Container([
                                      'textAlign': 'center',
                                      'backgroundColor': '#f2f2f2',
                                      'border': '1px solid #d6d6d6'
-                                 })
+                                 }, virtualization=True)
         ])
     ])
 ])
