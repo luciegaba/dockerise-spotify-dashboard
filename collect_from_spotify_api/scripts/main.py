@@ -24,7 +24,7 @@ CREDS_MYSQL = {
 
 def main():
     # Get the list of artists and the access token
-    list_artists = get_rappers_exhaustive_list(["rap fr","french rap", "rap francais"])
+    list_artists = get_rappers_exhaustive_list(["rap fr", "rap francais"])
     sp = get_access_token()
 
     # Get the Spotify IDs of the artists

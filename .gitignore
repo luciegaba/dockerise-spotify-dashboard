@@ -1,3 +1,6 @@
 .DS_Store
 
 .env
+
+spotify_app/data/tracks.csv
+spotify_app/data/artists.csv
