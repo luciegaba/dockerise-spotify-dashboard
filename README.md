@@ -15,7 +15,7 @@
 
 ## About the Project
 The following project is realized as part of the Linux course given by the MoSEF Master at the University of Paris 1 Panthéon-Sorbonne. The main goal is to deploy an app with Docker or with a simple shell file. 
-This was very challenging and really cool to realise!
+This was very challenging and really cool to realize!
 
 
 
@@ -25,7 +25,6 @@ In this repository, you will find the following elements:
 * Some Docker Images each folder corresponds to an Image to build (with Python)):
     * collect_from_spotify_api : Request data from Spotify with Python (with Spotipy package)
     * dash_app_analytics : Create a user web-app on local host with Dash
-    * mysql (only additional files for MySQL Image): Allow to create 2 tables with MySQL Image (with 01-databases.sql)
 
 
 
@@ -53,11 +52,11 @@ The main page, or "Home", is just a simple user guide for the app!
 
 The first tab is an overview of the artist of the user's choice. It provides statistical information such as the popularity score and the top 10 songs, as well as star graphs that allow the comparison of different artists or songs. In addition to being fun, this format allows for an easy understanding of the artist's characteristics.
 
-The second tab is a simple recommendation system. The project is not focused on using machine learning, so we used a simple K-means model on the artists and songs. By forming clusters (determined using traditional methods), we have groups of similar artists/songs. Based on the user's desire for an artist or song suggestion, we provide content 
+The second tab is a simple recommendation system. The project is not focused on using machine learning, so we used a simple K-means model on the artists and songs. By forming clusters (determined using traditional methods), we have groups of similar artists/songs. Based on the user's desire for an artist or song suggestion, we provide content. 
 
 
 ### Installation
-In order to run the code, you will need to create API access for Spotify and Lastfm. It's free so don't hesitate to make it! (https://developer.spotify.com/dashboard/ and https://www.last.fm/api/account/create )
+In order to run the code, you will need to create API access for Spotify and Lastfm. It's free so don't hesitate to make it! (https://developer.spotify.com/dashboard/ and https://www.last.fm/api/account/create)
 1. Clone the repository
 ```sh
 git clone https://github.com/luciegaba/spotify_app
