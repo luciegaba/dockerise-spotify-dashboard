@@ -85,12 +85,16 @@ SQL_REQUEST_ARTISTS="SELECT * FROM artists;"
 SQL_REQUEST_TRACKS="SELECT * FROM tracks;"
 
 ```
-3. Launch shell script
+
+4. Launch shell script to make apps running
+(Click on yes for csv options if you have csv and need it to avoid long requests..)
 ```sh
 bash launch.sh
 ```
+If errors, check docker df, group, and eventually use ```docker system prune ```
+It can take 10 minutes for mysql database launching as it depends on request app service. Same for dash app which depends on mysql.. Containers that could be affected by dependences have "restarted always" option so it should cause problem.
 
-
+Remark: Don't push Image on Dockerhub because secrets issue is not resolved
 ### Access to our apps:
 
 * MySQL:  http://localhost:8080

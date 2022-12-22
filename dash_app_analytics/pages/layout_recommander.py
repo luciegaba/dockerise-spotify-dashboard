@@ -20,12 +20,7 @@ dropbar_artist = dcc.Dropdown(id="selected_artist",
                               options=artists_list,
                               value="")
 
-stats_groupby_cluster = dash_table.DataTable(id='stats',
-                                             style_data={
-                                                 'whiteSpace': 'normal',
-                                                 'height': 'auto'
-                                             },
-                                             virtualization=True)
+
 
 graph_cluster = dcc.Graph(id='pca_graph')
 
@@ -58,13 +53,9 @@ clustering_part= dbc.Container([
       html.H6("Clustering", id='cluster', className='text-center'),
       ])])])
 table_reports_part= dbc.Container([dbc.Row([
-      dbc.Col([html.Br(),
-      html.H6("Informations concerning this cluster:", className='text-center'),
-      stats_groupby_cluster]),
-      dbc.Col([ 
          html.Br(),
          html.H6("From the previous graph, we recommend you the several artists/songs:", className='text-center'),
-         dbc.Alert("", color="info", id='selection_from_graph')])])])
+         dbc.Alert("", color="info", id='selection_from_graph')])])
 
 layout_recommander=html.Div(children=[
     html.Br(),

@@ -24,7 +24,7 @@ services:
     networks:
       - mysql_network
 
-  spotify:
+  request_app:
     build:
       context: ./collect_from_spotify_api
       dockerfile: Dockerfile
@@ -48,8 +48,10 @@ services:
       - CREDS_MYSQL_RAP_DB=${CREDS_MYSQL_RAP_DB}
       - LASTFM_API_KEY=${LASTFM_API_KEY}
       - LASTFM_API_SECRET=${LASTFM_API_SECRET}
+      - CSV_OPTION=${CSV_OPTION}
+     
 
-  dash_app:
+  user_app:
       build: 
         context: ./dash_app_analytics
       container_name: dash_app_analytics
@@ -67,7 +69,8 @@ services:
       environment:
       - SQL_REQUEST_ARTISTS=${SQL_REQUEST_ARTISTS}
       - SQL_REQUEST_TRACKS=${SQL_REQUEST_TRACKS}
-    
+      - CSV_OPTION=${CSV_OPTION}
+      
 
 volumes:
    mysqldb:

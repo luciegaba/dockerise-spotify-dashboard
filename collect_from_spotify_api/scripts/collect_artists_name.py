@@ -12,7 +12,6 @@ def get_rappers_exhaustive_list(tag_names: list) -> list:
     # Retrieve environment variables
     api_key = os.environ["LASTFM_API_KEY"]
     api_secret = os.environ["LASTFM_API_SECRET"]
-
     # Create an instance of LastFMNetwork
     lastfm = LastFMNetwork(api_key=api_key, api_secret=api_secret)
 

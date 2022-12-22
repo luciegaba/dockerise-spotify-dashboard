@@ -8,3 +8,4 @@ lxml
 gunicorn
 spotipy
 pylast
+cryptography
