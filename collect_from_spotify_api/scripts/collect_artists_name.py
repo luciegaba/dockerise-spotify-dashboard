@@ -23,10 +23,10 @@ def get_rappers_exhaustive_list(tag_names: list) -> list:
         tag = Tag(tag_name, lastfm)
 
         # Retrieve the list of artists corresponding to the tag
-        results = tag.get_top_artists(limit=1000)
+        results = tag.get_top_artists(limit=300)
 
         # Extract the names of the artists from the results list
         names = [top_item.item.get_name() for top_item in results]
         print(f"Artists concerning {tag_name} tag are",len(names))
         artists_name+=names
-    return list(set(artists_name))
+    return artists_name

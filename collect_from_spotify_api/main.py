@@ -32,14 +32,14 @@ def main():
         push_table_to_mysql(CREDS_MYSQL, tracks, "All artists", "tracks")       
 
     else: 
-        list_artists = get_rappers_exhaustive_list(["rap fr", "rap francais","french rap"])
-        sp = get_access_token()
-
+        list_artists = get_rappers_exhaustive_list(["rap francais"])
+        print(list_artists)
         # Get the Spotify IDs of the artists
+        sp = get_access_token()
         dico_id = get_spotify_artists_id(list_artists, sp)
-
+        print(dico_id)
         # For each artist, retrieve album and track data
-        for artist, artist_id in dico_id.items(CREDS_MYSQL):
+        for artist, artist_id in dico_id.items():
             while True:
                 try:
                     # Refresh the token before each call to the Spotify API

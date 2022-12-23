@@ -86,8 +86,7 @@ def display_albums(artist_input):
               Input('input-artist', 'value'),
               prevent_initial_call=True)
 def display_popularity(artist_input):
-    popularity = artists["artist_popularity"][artists['artist_name'] ==
-                                              artist_input].values.tolist()[0]
+    popularity = artists["artist_popularity"][artists['artist_name'] == artist_input].values.tolist()[0]
     return int(popularity)
 
 

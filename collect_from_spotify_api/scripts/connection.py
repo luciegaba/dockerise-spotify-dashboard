@@ -17,14 +17,19 @@ def get_access_token():
         refresh_token = os.environ['SPOTIPY_REFRESH_TOKEN']
         data["grant_type"] = "refresh_token"
         data["refresh_token"] = refresh_token
+        
     except KeyError:
         data["grant_type"] = "client_credentials"
     response = requests.post(oauth_url, data=data)
+    
+    
+    # Check if the request was successful
     if response.status_code == 200:
         token_data = response.json()
         sp = spotipy.Spotify(auth=token_data["access_token"])
         return sp
     else:
+        # Print an error message and return None if the request was unsuccessful
         print(f"Error requesting access token: {response.status_code}")
         return None
 
