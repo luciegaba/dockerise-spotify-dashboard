@@ -29,6 +29,7 @@ services:
       context: ./collect_from_spotify_api
       dockerfile: Dockerfile
     container_name: collect_from_spotify_api
+    restart: always
     depends_on:
       - mysqldb
     links:

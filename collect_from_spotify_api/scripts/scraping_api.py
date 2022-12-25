@@ -1,20 +1,20 @@
 def get_spotify_artists_id(list_artists, sp):
     """
-    Returns a dictionary mapping artist names to their Spotify IDs.
-    
-    Parameters:
-    - list_artists: list of artist names
-    - sp: authenticated Spotify API object
+    Get the Spotify IDs of the artists.
     """
-    dico_artists_id = {}
-    for name in list_artists:
-        result = sp.search("artist:" + name, type="artist")
-        try:
-            id = result["artists"]["items"][0]["id"]
-            dico_artists_id.update({name: id})
-        except:
-            print(f"Artist {name} not found")
-    return dico_artists_id
+    print("Getting Artists from LastFM")
+    dico_id = {}
+    for artist in list_artists:
+        results = sp.search(q=artist, type='artist')
+        if results['artists']['total'] > 0:
+            first_result = results['artists']['items'][0]
+            artist_name = first_result['name']
+            artist_id = first_result['id']
+            dico_id[artist_name] = artist_id
+        else:
+            print(f"No results found for artist {artist}")
+    return dico_id
+
 
 def get_artist_caracteristics(artist_id, sp):
     """
@@ -33,6 +33,7 @@ def get_artist_caracteristics(artist_id, sp):
     dict_artist["followers"] = result_artist["followers"]["total"]
     return dict_artist
 
+
 def get_albums_from_artist(artist_id, sp):
     """
     Returns a dictionary mapping album names to their Spotify IDs.
@@ -42,10 +43,12 @@ def get_albums_from_artist(artist_id, sp):
     - sp: authenticated Spotify API object
     """
     albums_dic_id = {}
-    result = sp.artist_albums(artist_id, album_type="album")
+    result = sp.artist_albums(artist_id, album_type=["album","single"])
     for album in result["items"]:
         albums_dic_id[album["name"]] = album["id"]
     return albums_dic_id
+
+
 
 def get_tracks_from_album(albums_dic_id, sp):
     """

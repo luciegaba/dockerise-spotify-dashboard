@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 from scripts.collect_artists_name import get_rappers_exhaustive_list
-from connection import (
+from scripts.connection import (
     get_access_token,
     push_table_to_mysql,
     test_connection_mysql,
@@ -21,27 +21,27 @@ CREDS_MYSQL = {
     "password": os.environ.get("CREDS_MYSQL_RAP_PASSWORD"),
 }
 
+import os
+import pandas as pd
 
 def main():
-    # Get the list of artists and the access token
+
+#If csv option : not requesting
     if os.environ.get("CSV_OPTION")=="YES":
-        tracks=pd.read_csv("data/tracks.csv").drop(columns="index")
-        artists=pd.read_csv("data/artists.csv").drop(columns="index")
+        tracks = pd.read_csv("data/tracks.csv").drop(columns="index")
+        artists = pd.read_csv("data/artists.csv").drop(columns="index")
         print(tracks)
         push_table_to_mysql(CREDS_MYSQL, artists,"All artists","artists")
-        push_table_to_mysql(CREDS_MYSQL, tracks, "All artists", "tracks")       
+        push_table_to_mysql(CREDS_MYSQL, tracks, "All artists", "tracks")     
 
+
+#Requesting spotify
     else: 
-        list_artists = get_rappers_exhaustive_list(["rap francais"])
-        # Get the Spotify IDs of the artists
+        list_artists = get_rappers_exhaustive_list(["rap fr", "rap francais"])
+        print("List artists from Lastfm:",list_artists)
         sp = get_access_token()
-        dico_id = get_spotify_artists_id(list_artists, sp)
-        print(dico_id)
-        # For each artist, retrieve album and track data
-        for artist, artist_id in dico_id.items():
-            print(artist)
-            # Refresh the token before each call to the Spotify API
-            sp = get_access_token()
+        dico_id_ = get_spotify_artists_id(list_artists, sp)
+        for artist, artist_id in dico_id_.items():
             albums = get_albums_from_artist(artist_id, sp)
             artist_feature = get_artist_caracteristics(artist_id, sp)
             artist_data = pd.DataFrame(data=artist_feature, index=[0])
