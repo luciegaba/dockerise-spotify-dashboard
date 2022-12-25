@@ -55,12 +55,9 @@ def test_connection_mysql(config):
 
 
 
-if os.environ.get("CSV_OPTION")=="YES":
-    tracks=pd.read_csv("components/data/tracks.csv")
-    artists=pd.read_csv("components/data/artists.csv")
-else: 
-    tracks=read_mysql_table(CREDS_MYSQL,SQL_REQUEST_TRACKS)
-    artists=read_mysql_table(CREDS_MYSQL,SQL_REQUEST_ARTISTS)
+ 
+tracks=read_mysql_table(CREDS_MYSQL,SQL_REQUEST_TRACKS)
+artists=read_mysql_table(CREDS_MYSQL,SQL_REQUEST_ARTISTS)
     
 artists_list=list(set(artists["artist_name"].values.tolist()))
 artists_list.sort()
